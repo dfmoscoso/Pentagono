@@ -8,14 +8,17 @@ import Button from '@mui/material/Button';
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import Typography from '@mui/material/Typography';
-
+import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
-import PrintIcon from '@mui/icons-material/Print';
-
+import PentagonOutlinedIcon from '@mui/icons-material/PentagonOutlined';
 import RadarChart from "./RadarChart";
+import Alert from '@mui/material/Alert';
+import IconButton from '@mui/material/IconButton';
+import Collapse from '@mui/material/Collapse';
+import CloseIcon from '@mui/icons-material/Close';
 import { responsiveFontSizes } from "@mui/material";
 
 const CARR_ARQYURB = [
@@ -183,6 +186,7 @@ const HEIGHTINDVPENT = "85%"
 const TabResultadosGenerales = () => {
    const [competencias, setCompetencias] = useState([0, 0, 0, 0, 0]);
    const [open, setOpen] = useState(false)
+   const [openAlert, setOpenAlert] = useState(true)
    //Para llenar el combo de los periodos existentes
    const [PERIODOS, setPERIODOS] = useState([]);
    const [llenarPeriodos, setLlenarPeriodos] = useState(true);
@@ -440,6 +444,25 @@ const TabResultadosGenerales = () => {
          >
             <CircularProgress color="inherit" />
          </Backdrop>
+         <Collapse in={openAlert}>
+            <Alert
+               action={
+                  <IconButton
+                     aria-label="close"
+                     color="inherit"
+                     size="small"
+                     onClick={() => {
+                        setOpenAlert(false);
+                     }}
+                  >
+                     <CloseIcon fontSize="inherit" />
+                  </IconButton>
+               }
+               sx={{ mb: 2 }}
+            >
+               Close me!
+            </Alert>
+         </Collapse>
          <Box
             className="flex items-end"
             sx={{
@@ -546,7 +569,7 @@ const TabResultadosGenerales = () => {
             <Button
                size='small'
                variant="contained"
-               startIcon={<SearchOutlinedIcon />}
+               startIcon={<FilterAltOutlinedIcon />}
                onClick={() => {
                   console.log(facultad);
                   console.log(carreraSelected);
@@ -575,7 +598,7 @@ const TabResultadosGenerales = () => {
             <Button
                size='small'
                variant="contained"
-               startIcon={<PrintIcon />}
+               startIcon={<PentagonOutlinedIcon />}
                onClick={() => { graficar(); }}
             >
                Graficar
