@@ -444,25 +444,7 @@ const TabResultadosGenerales = () => {
          >
             <CircularProgress color="inherit" />
          </Backdrop>
-         <Collapse in={openAlert}>
-            <Alert
-               action={
-                  <IconButton
-                     aria-label="close"
-                     color="inherit"
-                     size="small"
-                     onClick={() => {
-                        setOpenAlert(false);
-                     }}
-                  >
-                     <CloseIcon fontSize="inherit" />
-                  </IconButton>
-               }
-               sx={{ mb: 2 }}
-            >
-               Close me!
-            </Alert>
-         </Collapse>
+      
          <Box
             className="flex items-end"
             sx={{
